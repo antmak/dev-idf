@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2015-2021 Espressif Systems (Shanghai) CO LTD
+ * SPDX-FileCopyrightText: 2015-2022 Espressif Systems (Shanghai) CO LTD
  *
  * SPDX-License-Identifier: Apache-2.0
  */
@@ -156,7 +156,7 @@ static void select_rtc_slow_clk(slow_clk_sel_t slow_clk)
 #elif defined(CONFIG_ESP32_RTC_CLK_SRC_INT_8MD256)
     select_rtc_slow_clk(SLOW_CLK_8MD256);
 #else
-    select_rtc_slow_clk(RTC_SLOW_FREQ_RTC);
+    select_rtc_slow_clk(SLOW_CLK_150K);
 #endif
 
 #ifdef CONFIG_BOOTLOADER_WDT_ENABLE
@@ -308,5 +308,5 @@ __attribute__((weak)) void esp_perip_clk_init(void)
 
 void rtc_clk_select_rtc_slow_clk(void)
 {
-    select_rtc_slow_clk(RTC_SLOW_FREQ_32K_XTAL);
+    select_rtc_slow_clk(SLOW_CLK_32K_XTAL);
 }

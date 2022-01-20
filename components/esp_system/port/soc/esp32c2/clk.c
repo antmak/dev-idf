@@ -98,7 +98,7 @@ static const char *TAG = "clk";
 #elif defined(CONFIG_ESP32C2_RTC_CLK_SRC_INT_8MD256)
     select_rtc_slow_clk(SLOW_CLK_8MD256);
 #else
-    select_rtc_slow_clk(RTC_SLOW_FREQ_RTC);
+    select_rtc_slow_clk(SLOW_CLK_RTC);
 #endif
 
 #ifdef CONFIG_BOOTLOADER_WDT_ENABLE
@@ -182,7 +182,7 @@ static void select_rtc_slow_clk(slow_clk_sel_t slow_clk)
 
 void rtc_clk_select_rtc_slow_clk(void)
 {
-    select_rtc_slow_clk(RTC_SLOW_FREQ_32K_XTAL);
+    select_rtc_slow_clk(SLOW_CLK_32K_XTAL);
 }
 
 /* This function is not exposed as an API at this point.
