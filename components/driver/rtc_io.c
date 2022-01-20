@@ -206,7 +206,7 @@ esp_err_t rtc_gpio_wakeup_enable(gpio_num_t gpio_num, gpio_int_type_t intr_type)
         return ESP_ERR_INVALID_ARG; // Dont support this mode.
     }
     RTCIO_ENTER_CRITICAL();
-    rtcio_hal_wakeup_enable(rtc_io_number_get(gpio_num), intr_type);
+    rtcio_hal_wakeup_enable(rtc_io_number_get(gpio_num), (rtcio_ll_wake_type_t)intr_type);
     RTCIO_EXIT_CRITICAL();
     return ESP_OK;
 }

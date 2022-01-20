@@ -103,6 +103,8 @@ function(__build_set_default_build_specifications)
                                     "-Wextra"
                                     "-Wno-unused-parameter"
                                     "-Wno-sign-compare"
+                                    # ignore multiple enum conversion warnings since gcc 11
+                                    "-Wno-enum-conversion"
                                     # always generate debug symbols (even in release mode, these don't
                                     # go into the final binary so have no impact on size
                                     "-ggdb")
