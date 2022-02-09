@@ -158,7 +158,8 @@ static void update_rtc_retain_mem_crc(void)
 
 void bootloader_common_reset_rtc_retain_mem(void)
 {
-    memset(rtc_retain_mem, 0, sizeof(rtc_retain_mem_t));
+    rtc_retain_mem_t zeroed = {0};
+    *rtc_retain_mem = zeroed;
 }
 
 uint16_t bootloader_common_get_rtc_retain_mem_reboot_counter(void)
