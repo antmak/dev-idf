@@ -94,7 +94,11 @@ void esp_efuse_utility_burn_chip(void)
                     if (esp_efuse_get_coding_scheme(num_block) == EFUSE_CODING_SCHEME_RS) {
                         uint8_t block_rs[12];
                         efuse_hal_rs_calculate((void *)range_write_addr_blocks[num_block].start, block_rs);
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wstringop-overflow"
+#pragma GCC diagnostic ignored "-Warray-bounds"
                         memcpy((void *)EFUSE_PGM_CHECK_VALUE0_REG, block_rs, sizeof(block_rs));
+#pragma GCC diagnostic pop
                     }
                     int data_len = (range_write_addr_blocks[num_block].end - range_write_addr_blocks[num_block].start) + sizeof(uint32_t);
                     memcpy((void *)EFUSE_PGM_DATA0_REG, (void *)range_write_addr_blocks[num_block].start, data_len);
