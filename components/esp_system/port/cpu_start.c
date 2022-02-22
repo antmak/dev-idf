@@ -615,7 +615,11 @@ void IRAM_ATTR call_start_cpu0(void)
 #else
     // This assumes that DROM is the first segment in the application binary, i.e. that we can read
     // the binary header through cache by accessing SOC_DROM_LOW address.
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wstringop-overread"
+#pragma GCC diagnostic ignored "-Warray-bounds"
     memcpy(&fhdr, (void *) SOC_DROM_LOW, sizeof(fhdr));
+#pragma GCC diagnostic pop
 #endif // CONFIG_APP_BUILD_TYPE_ELF_RAM
 
 #if CONFIG_IDF_TARGET_ESP32
