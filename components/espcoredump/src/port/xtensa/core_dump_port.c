@@ -156,7 +156,10 @@ static void *esp_core_dump_get_fake_stack(uint32_t *stk_len)
 
 static core_dump_reg_pair_t *esp_core_dump_get_epc_regs(core_dump_reg_pair_t* src)
 {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Waddress-of-packed-member"
     uint32_t* reg_ptr = (uint32_t*)src;
+#pragma GCC diagnostic pop
     // get InterruptException program counter registers
     COREDUMP_GET_EPC(EPC_1, reg_ptr);
     COREDUMP_GET_EPC(EPC_2, reg_ptr);
@@ -170,7 +173,10 @@ static core_dump_reg_pair_t *esp_core_dump_get_epc_regs(core_dump_reg_pair_t* sr
 
 static core_dump_reg_pair_t *esp_core_dump_get_eps_regs(core_dump_reg_pair_t* src)
 {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Waddress-of-packed-member"
     uint32_t* reg_ptr = (uint32_t*)src;
+#pragma GCC diagnostic pop
     // get InterruptException processor state registers
     COREDUMP_GET_EPS(EPS_2, reg_ptr);
     COREDUMP_GET_EPS(EPS_3, reg_ptr);
